@@ -89,9 +89,11 @@ export default class Tapis {
     }
     addCarteToTapis() {
         let position = 0;
+        let cartesHTML = "";
         Tapis.cartes.forEach(element => {
-            document.getElementById("tapis").innerHTML += element.getCarteHTML(position++);
+            cartesHTML += element.getCarteHTML(position++);
         });
+        document.getElementById("tapis").innerHTML = cartesHTML;
         let cartes = document.querySelectorAll(".carte .front");
         cartes.forEach(carte => {
             carte.addEventListener("click", this.retourneCarte);

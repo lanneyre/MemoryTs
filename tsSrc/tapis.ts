@@ -25,6 +25,7 @@ export default class Tapis {
 
         this.generateTapis();
     }
+
     private generateNbAleatoire(): Array<number> {
         let nbAleatoire = new Array<number>();
         for(let i=0; i<this.taille; i++){
@@ -105,15 +106,19 @@ export default class Tapis {
    
     private addCarteToTapis():void{
         let position:number = 0;
+        let cartesHTML:string = "";
         Tapis.cartes.forEach(element => {
-            document.getElementById("tapis")!.innerHTML += element.getCarteHTML(position++);
+            cartesHTML += element.getCarteHTML(position++);
         });
+        document.getElementById("tapis")!.innerHTML = cartesHTML;
+
         let cartes:NodeListOf<HTMLElement> = document.querySelectorAll(".carte .front");
         
         cartes.forEach(carte => {
             carte.addEventListener("click", this.retourneCarte);
         });
     }
+
     private generateTapis():void {
         let nb = this.generateNbAleatoire();
         

@@ -29,6 +29,9 @@ body{
     text-align: center;
     transition: transform 0.4s;
     transform-style: preserve-3d;
+    background-color: white;
+    /* padding: 10px; */
+    box-sizing: border-box;
 }
 
 /* .carte:hover .carteContent {
@@ -43,14 +46,27 @@ body{
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    border-radius:5px;
+    border-radius:10px;
+    box-sizing: border-box;
 }
 .front {
-    background-color: #cccccc;
+    /* background-color: white; */
+    background-image: url(../img/dos.png);
+    background-position: center center;
+    background-repeat: no-repeat;
     color: #111111;
+    border: 3px solid black;
+    padding: 10px;
+    border-radius:10px;
 }
 .back{
     background-color: #8ebf42;
     color: #eeeeee;
     transform: rotateX(180deg);
+}
+.loading{
+    background-color:black;
+    width: 100%;
+    text-align: center;
+    border-radius:10px;
 }
