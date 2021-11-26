@@ -5,7 +5,7 @@ export default class Tapis {
     private taille:number;
     static cartes:Array<Carte> = new Array<Carte>();
     static cartesRetournes:Array<Carte> = new Array<Carte>();
-    private tps:number;
+    static mouv:number;
 
     constructor(t:number) {
         
@@ -21,7 +21,7 @@ export default class Tapis {
         this.taille = t;
         // this.cartes = new Array<Carte>();
         // this.cartesRetournes = new Array<Carte>();
-        this.tps = 0;
+        Tapis.mouv = 0;
 
         this.generateTapis();
     }
@@ -40,6 +40,7 @@ export default class Tapis {
         }
         return nbAleatoire;
     }
+
     private randomiserCarte(): void {
         let i, j, tmp;
         for (i = Tapis.cartes.length - 1; i > 0; i--) {
@@ -71,9 +72,10 @@ export default class Tapis {
     static checkTapis():void{
         if(Tapis.cartes.length == Tapis.cartesRetournes.length){
             setTimeout(() => {
-                document.getElementById("tapis")!.innerHTML = "<h1 class='bravo'>Félicitations</h1>";
-            }, 1000)
-            
+                document.getElementById("tapis")!.classList.add("feuxdart");
+                document.querySelector("body")!.classList.add("feuxdart");
+                document.getElementById("tapis")!.innerHTML = "<h1 class='bravo'>Félicitations<br><small>Vous avez terminé ce mémory en "+Tapis.mouv+" mouvements</small></h1><div class=\"pyro\"><div class=\"before\"></div><div class=\"after\"></div></div>";
+            }, 1000); 
         }
     }
 
@@ -102,6 +104,7 @@ export default class Tapis {
         Tapis.cartesRetournes.push(carte);
         //Tapis.cartes.splice(parseInt(pos.getAttribute("id").slice(5)),1); 
         Tapis.checkCartesRetourne();
+        Tapis.mouv++;
     }
    
     private addCarteToTapis():void{
